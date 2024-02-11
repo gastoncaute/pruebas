@@ -1,5 +1,5 @@
-export const modifyImageUrl = (imageRef: any) => {
-  const modifiedRef = String(imageRef)
+export const modifyUrl = (ref: string, isImage: boolean) => {
+  const modifiedRef = ref
     .replace("file-", "")
     .replace("image-", "")
     .replace("-jpg", ".jpg")
@@ -9,6 +9,10 @@ export const modifyImageUrl = (imageRef: any) => {
     .replace("-mp4", ".mp4")
     .replace("-webm", ".webm")
     .replace("-ogg", ".ogg");
-  const baseUrl = "https://cdn.sanity.io/images/o6m3g8fo/production/";
+
+  const baseUrl = isImage
+    ? "https://cdn.sanity.io/images/o6m3g8fo/production/"
+    : "https://cdn.sanity.io/files/o6m3g8fo/production/";
+
   return baseUrl + modifiedRef;
 };
